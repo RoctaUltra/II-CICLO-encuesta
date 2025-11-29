@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Información del Proveedor</title>
+  <style>
+    /* Fondo general */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Contenedor */
+    .container {
+      background-color: rgba(255, 255, 255, 0.95);
+      width: 480px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      padding: 30px 40px;
+      box-sizing: border-box;
+    }
+
+    /* Título */
+    h3 {
+      text-align: center;
+      color: #0078d7;
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+
+    /* Etiquetas */
+    label {
+      font-weight: 600;
+      color: #333;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* Inputs y selects */
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      margin-bottom: 18px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #0078d7;
+      box-shadow: 0 0 6px rgba(0, 120, 215, 0.3);
+      outline: none;
+    }
+
+    /* Botón */
+    button {
+      width: 100%;
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+      transform: scale(1.03);
+    }
+
+    /* --- NUEVO DISEÑO EN FILAS --- */
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-row > div {
+      flex: 1;
+    }
+
+    /* Responsivo */
+    @media (max-width: 500px) {
+      .form-row {
+        flex-direction: column;
+      }
+      .container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h3>Formulario de Persona</h3>
+
+    <form action="grabar.php" method="post">
+
+      <!-- Fila 1 -->
+      <div class="form-row">
+        <div>
+          <label>Nombre del proveedor:</label>
+          <input type="text" name="nombreprovedor" required>
+        </div>
+        <div>
+          <label>Nombre de contacto:</label>
+          <input type="text" name="nombrecontacto" required>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="form-row">
+        <div>
+          <label>Apellido de contacto:</label>
+          <input type="text" name="apellidocontacto" required>
+        </div>
+        <div>
+          <label>Email:</label>
+          <input type="email" name="email" required>
+        </div>
+      </div>
+
+      <!-- Vertical (una debajo de otra) -->
+      <label>Teléfono:</label>
+      <input type="number" name="telefono" required>
+
+      <label>Dirección:</label>
+      <input type="text" name="direccion" required>
+
+      <label for="ciudad">Ciudad:</label>
+      <select name="ciudad" id="ciudad" required>
+        <option value="">-- Selecciona una ciudad --</option>
+        <option value="Lima">Lima</option>
+        <option value="Arequipa">Arequipa</option>
+        <option value="Trujillo">Trujillo</option>
+        <option value="Chiclayo">Chiclayo</option>
+        <option value="Piura">Piura</option>
+        <option value="Cusco">Cusco</option>
+        <option value="Iquitos">Iquitos</option>
+        <option value="Huancayo">Huancayo</option>
+        <option value="Tacna">Tacna</option>
+        <option value="Puno">Puno</option>
+        <option value="Chimbote">Chimbote</option>
+        <option value="Cajamarca">Cajamarca</option>
+        <option value="Huaraz">Huaraz</option>
+        <option value="Ayacucho">Ayacucho</option>
+        <option value="Tumbes">Tumbes</option>
+        <option value="Ica">Ica</option>
+        <option value="Moquegua">Moquegua</option>
+        <option value="Pucallpa">Pucallpa</option>
+        <option value="Tarapoto">Tarapoto</option>
+        <option value="Moyobamba">Moyobamba</option>
+        <option value="Abancay">Abancay</option>
+        <option value="Huancavelica">Huancavelica</option>
+        <option value="Pasco">Pasco</option>
+        <option value="Puerto Maldonado">Puerto Maldonado</option>
+      </select>
+
+      <label for="provincia">Provincia:</label>
+      <select name="provincia" id="provincia">
+        <option value="">-- Selecciona una provincia --</option>
+      </select>
+
+      <label>Código Postal:</label>
+      <input type="number" name="codigopostal" required>
+
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <script>
+    const provincias = {
+      "Lima": ["Lima", "Callao", "Cañete", "Huaral", "Barranca", "Huarochirí", "Oyón", "Yauyos"],
+      "Arequipa": ["Arequipa", "Caylloma", "Islay", "Camana", "Castilla", "Condesuyos"],
+      "Trujillo": ["Trujillo", "Ascope", "Otuzco", "Santiago de Chuco", "Chepén", "Pacasmayo"],
+      "Chiclayo": ["Chiclayo", "Lambayeque", "Ferreñafe"],
+      "Piura": ["Piura", "Sullana", "Paita", "Talara", "Morropon", "Huancabamba", "Sechura"],
+      "Cusco": ["Cusco", "Urubamba", "Quispicanchi", "Canchis", "Anta", "La Convención"],
+      "Iquitos": ["Maynas", "Alto Amazonas", "Requena", "Loreto", "Datem del Marañón", "Putumayo"],
+      "Huancayo": ["Huancayo", "Tarma", "Jauja", "Concepción", "Satipo", "Chanchamayo"],
+      "Tacna": ["Tacna", "Candarave", "Jorge Basadre", "Tarata"],
+      "Puno": ["Puno", "San Román", "Azángaro", "Melgar", "Sandia", "Huancané"],
+      "Chimbote": ["Santa", "Casma", "Huarmey", "Pallasca"],
+      "Cajamarca": ["Cajamarca", "Jaén", "Cutervo", "Celendín", "Chota", "San Marcos"],
+      "Huaraz": ["Huaraz", "Carhuaz", "Recuay", "Bolognesi", "Huari", "Yungay"],
+      "Ayacucho": ["Huamanga", "Huanta", "Cangallo", "Lucanas", "La Mar"],
+      "Tumbes": ["Tumbes", "Zarumilla", "Contralmirante Villar"],
+      "Ica": ["Ica", "Chincha", "Pisco", "Nazca", "Palpa"],
+      "Moquegua": ["Mariscal Nieto", "Ilo", "General Sánchez Cerro"],
+      "Pucallpa": ["Coronel Portillo", "Padre Abad", "Atalaya", "Purus"],
+      "Tarapoto": ["San Martín", "Bellavista", "Lamas", "Tocache", "Moyobamba"],
+      "Moyobamba": ["Moyobamba", "Rioja", "Lamas", "San Martín", "Tocache"],
+      "Abancay": ["Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "Cotabambas"],
+      "Huancavelica": ["Huancavelica", "Angaraes", "Tayacaja", "Churcampa", "Acobamba"],
+      "Pasco": ["Pasco", "Daniel Alcides Carrión", "Oxapampa"],
+      "Puerto Maldonado": ["Tambopata", "Manu", "Tahuamanu"]
+    };
+
+    const ciudadSelect = document.getElementById("ciudad");
+    const provinciaSelect = document.getElementById("provincia");
+
+    ciudadSelect.addEventListener("change", function() {
+      const ciudad = this.value;
+      provinciaSelect.innerHTML = '<option value="">-- Selecciona una provincia --</option>';
+      if (provincias[ciudad]) {
+        provincias[ciudad].forEach(function(prov) {
+          const option = document.createElement("option");
+          option.value = prov;
+          option.textContent = prov;
+          provinciaSelect.appendChild(option);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
